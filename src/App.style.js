@@ -40,11 +40,35 @@ HeaderContainer.displayName = "HeaderContainer"
 
 const StyledForm = w.form(
   `
-
+    flex
+    flex-col
+    justify-center
+    items-start
+    gap-4
   `
 )
 
 StyledForm.displayName = "StyledForm"
+
+
+const ContainerInput = w.div(
+  `
+    flex
+    flex-col
+  `
+)
+ContainerInput.displayName = "ContainerInput"
+
+const Input = w.input(
+  `
+    outline-none
+    p-2
+    rounded
+    bg-slate-400
+    font-[16px]
+  `
+)
+
 
 const Button = w.button(
   `
@@ -75,4 +99,4 @@ const Button = w.button(
 Button.displayName = "Button"
 
 
-export { Container, Button, HeaderContainer, StyledForm }
+export { Container, Button, HeaderContainer, StyledForm,ContainerInput, Input }

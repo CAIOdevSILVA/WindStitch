@@ -1,14 +1,24 @@
 import { useState } from "react"
 
-import { Container, Button, HeaderContainer, StyledForm } from "./App.style"
+import { Container, Button, HeaderContainer, StyledForm, ContainerInput,Input } from "./App.style"
 
 function App() {
   const [theme, setTheme] = useState("light")
-  const end = "end"
+  const [form, setForm] = useState([{
+    name: "",
+    email: "",
+    password: ""
+  }])
+
+  const handleFormChange = (e) => {
+    const { name, value } = e.target
+    setForm({...form, [name]:value })
+  }
+
   return (
     <Container background={theme}>
       <HeaderContainer
-        direction={end}
+       justify={"end"}
       >
         <Button 
           color={theme}
@@ -19,20 +29,20 @@ function App() {
         >Switch Theme</Button>
       </HeaderContainer>
 
-      <div className="w-full ">
+      <div className="w-full mt-20 flex justify-center items-center ">
         <StyledForm>
-          <div>
-            <label>Nome</label>
-            <input type="text" />
-          </div>
-          <div>
-            <label>Email</label>
-            <input type="text" />
-          </div>
-          <div>
-            <label>Senha</label>
-            <input type="text" />
-          </div>
+          <ContainerInput>
+            <label className={`${theme === "light" ? "text-zinc-900" : "text-white"} font-medium`}>Nome</label>
+            <Input type="text" name="name" value={form.name}  onChange={handleFormChange}/>
+          </ContainerInput>
+          <ContainerInput>
+            <label className={`${theme === "light" ? "text-zinc-900" : "text-white"} font-medium`}>Email</label>
+            <Input type="email" name="email" value={form.email} onChange={handleFormChange}/>
+          </ContainerInput>
+          <ContainerInput>
+            <label className={`${theme === "light" ? "text-zinc-900" : "text-white"} font-medium`}>Senha</label>
+            <Input type="password" name="password" value={form.password} onChange={handleFormChange}/>
+          </ContainerInput>
 
           <Button 
             color={theme}
@@ -40,6 +50,7 @@ function App() {
             type="submit"
             onClick={(e) => {
               e.preventDefault()
+              console.log(form)
             }}
           >Enviar</Button>
         </StyledForm>
